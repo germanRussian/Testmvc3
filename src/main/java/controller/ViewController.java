@@ -41,7 +41,7 @@ public class ViewController extends HttpServlet {
 			BoardVO vo2 = service.read(vo);
 			request.setAttribute("vo", vo2);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("board/view.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("gallery/view.jsp");
 			dispatcher.forward(request, response);
 
 	}

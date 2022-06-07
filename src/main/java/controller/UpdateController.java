@@ -49,7 +49,7 @@ public class UpdateController extends HttpServlet {
 
 		request.setAttribute("vo", vo2);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("board/update.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("gallery/update.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -79,7 +79,7 @@ public class UpdateController extends HttpServlet {
 		
 		
 		
-		int maxSize = 10 * 1024 * 1024;// 10Mb
+		int maxSize = 100 * 1024 * 1024;// 100Mb
 		String encType = "UTF-8";
 		
 		

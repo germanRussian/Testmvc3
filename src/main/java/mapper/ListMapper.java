@@ -18,7 +18,7 @@ public class ListMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT num, title, writer, writerDate FROM board ");
+		sql.append(" SELECT num, title, writer, writerDate FROM gallery ");
 		sql.append(" order by num desc");
 
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
@@ -78,7 +78,7 @@ public class ListMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT count(*)as cnt FROM board ");
+		sql.append(" SELECT count(*)as cnt FROM gallery ");
 		sql.append(" order by num desc");
 
 		int totalRow = 0;
@@ -132,7 +132,7 @@ public class ListMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT count(*)as cnt FROM board ");
+		sql.append(" SELECT count(*)as cnt FROM gallery ");
 		sql.append(" where title like concat('%',?,'%') ");
 		sql.append(" order by num desc");
 
@@ -188,7 +188,7 @@ public class ListMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT * FROM board ");
+		sql.append(" SELECT * FROM gallery ");
 		sql.append(" where 1=1 ");
 
 		if ("title".equals(field)) {
@@ -291,7 +291,7 @@ public class ListMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT count(*)as cnt FROM board ");
+		sql.append(" SELECT count(*)as cnt FROM gallery ");
 		sql.append(
 				" where (title like concat('%',?,'%') and writer like concat('%',?,'%')  and content like concat('%',?,'%')) ");
 		sql.append(" order by num desc");
@@ -367,7 +367,7 @@ public class ListMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT * FROM board ");
+		sql.append(" SELECT * FROM gallery ");
 		sql.append(" where 1=1 ");
 
 		if ("title".equals(field1)) {

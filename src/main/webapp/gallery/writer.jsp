@@ -31,8 +31,8 @@
 
 		<hr>
 		<div>
-			<span> 첨부파일 : </span> <input type="file" name="upfile"
-				class="form-control">
+	 <!-- accept를 활용하여 이미지 파일만 받는다. image/*모든 파일, image/png 한가지만 받는다.-->
+			<span> 첨부파일 : </span> <input type="file" name="upfile" 	class="form-control" accept="image/*">
 		</div>
 
 		<hr>

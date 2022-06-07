@@ -14,7 +14,7 @@ public class WirterMapper {
 		String password = "smart";
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" INSERT INTO board (num, title, content, writer, writerDate, realFileName, realSaveFileName)");
+		sql.append(" INSERT INTO gallery (num, title, content, writer, writerDate, realFileName, realSaveFileName)");
 		sql.append(" VALUES (null, ?, ?, ?, now(), ?, ? ) ");
 
 		Connection conn = null;

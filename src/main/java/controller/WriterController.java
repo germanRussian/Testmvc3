@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import domain.BoardVO;
 import service.WriterServiceImpl;
+import util.JavaUtil;
 
 /**
  * Servlet implementation class WriterController
@@ -36,7 +37,7 @@ public class WriterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("board/writer.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("gallery/writer.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -58,7 +59,7 @@ public class WriterController extends HttpServlet {
 			targetDir.mkdir();// 디렉토리 한개
 		  //targetDir.mkdirs();
 		}
-		int maxSize = 10*1024*1024;//10Mb
+		int maxSize = 1000*1024*1024;//1000Mb
 		String encType = "UTF-8";
 		
 		
@@ -73,6 +74,9 @@ public class WriterController extends HttpServlet {
 		
 		String realFileName = multi.getOriginalFileName("upfile");
 		String realSaveFileName = multi.getFilesystemName("upfile");
+		
+		//썸네일 만들기
+		JavaUtil.createThumbnail(realFolder+"/"+realSaveFileName, 256);
 		
 		//
 		BoardVO vo = new BoardVO();
