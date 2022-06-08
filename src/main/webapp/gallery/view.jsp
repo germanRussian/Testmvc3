@@ -34,9 +34,15 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
 	<hr>
 	<form action="" method="" id="frm">
 		<!-- <span> 게시글 번호</span> -->
-		<input  type="hidden" name="num" id="num" value="<%=vo.getNum()%>">
-		<input	type="hidden" name="realSaveFileName"	value="<%=vo.getRealSaveFileName()%>">
-
+		<input type="hidden" name="num" id="num" value="<%=vo.getNum()%>">
+		<input type="hidden" name="realSaveFileName"
+			value="<%=vo.getRealSaveFileName()%>">
+		
+		<colgroup>
+		<col width="10%">
+		<col>
+		</colgroup>
+		
 		<div>
 			<span>제목 : </span> <input style="width: 450px; border: 0 solid black"
 				type="text" name="title" value="<%=vo.getTitle()%>"
@@ -46,7 +52,7 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
 		<div>
 			<span>내용</span><br>
 			<textarea rows="10" cols="100" name="content" disabled="disabled"><%=vo.getContent()%></textarea>
-
+			<img src="upload/<%=vo.getRealSaveFileName()%>" alt="첨부파일" style="max-width: 100%">
 
 		</div>
 		<hr>
@@ -63,7 +69,8 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
 		</div>
 
 		<br>
-		<button type="button" class="btn btn-default" onclick="location.href='ListCon'">목록</button>
+		<button type="button" class="btn btn-default"
+			onclick="location.href='ListCon'">목록</button>
 		<button type="button" class="btn btn-default" id="btn_modi">수정</button>
 		<button type="button" class="btn btn-danger" id="btn_del">삭제</button>
 	</form>
@@ -79,13 +86,13 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
 				}
 
 			});
-			
+
 			$("#btn_modi").on("click", function(e) {
 				e.preventDefault();
-				
-					$("#frm").attr("method", "get");
-					$("#frm").attr("action", "UpdateCon");
-					$("#frm").submit();
+
+				$("#frm").attr("method", "get");
+				$("#frm").attr("action", "UpdateCon");
+				$("#frm").submit();
 			});
 		});
 	</script>

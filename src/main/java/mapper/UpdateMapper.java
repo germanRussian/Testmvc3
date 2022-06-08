@@ -13,7 +13,7 @@ public class UpdateMapper {
 		String password = "smart";
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" UPDATE board SET title = ?, content = ?, writer = ?, writerDate = (now()), realFileName = ?, realSaveFileName = ? ");
+		sql.append(" UPDATE gallery SET title = ?, content = ?, writer = ?, writerDate = (now()), realFileName = ?, realSaveFileName = ? ");
 		sql.append(" where num = ? ");
 
 		Connection conn = null;

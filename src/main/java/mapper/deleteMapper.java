@@ -19,7 +19,7 @@ public class deleteMapper {
 	
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" delete FROM board");
+		sql.append(" delete FROM gallery");
 		sql.append(" where num = ? ");
 
 		

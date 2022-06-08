@@ -20,12 +20,10 @@ int startNum = (Integer) request.getAttribute("startNum");
 String field = (String) request.getAttribute("field");
 String keyWord = (String) request.getAttribute("keyWord");
 
-
 String field1 = (String) request.getAttribute("field1");
 String keyWord1 = (String) request.getAttribute("keyWord1");
 String keyWord2 = (String) request.getAttribute("keyWord2");
 String keyWord3 = (String) request.getAttribute("keyWord3");
-
 
 int lastPage = totalRow / pageRow + ((totalRow % pageRow == 0) ? 0 : +1);
 
@@ -119,51 +117,39 @@ int lastPage = totalRow / pageRow + ((totalRow % pageRow == 0) ? 0 : +1);
 						+ 작성자 +내용</option>
 
 
-				</select> 
-				
-				<input type="text" name="keyWord1" class="form-control"
-					style="display: inline-block; width: 50%" value="<%=keyWord1%>" placeholder="제목">
-				<input type="text" name="keyWord2" class="form-control"
-					style="display: inline-block; width: 50%" value="<%=keyWord2%>"placeholder="작성자">
-				<input type="text" name="keyWord3" class="form-control"
-					style="display: inline-block; width: 50%" value="<%=keyWord3%>"placeholder="내용">
+				</select> <input type="text" name="keyWord1" class="form-control"
+					style="display: inline-block; width: 50%" value="<%=keyWord1%>"
+					placeholder="제목"> <input type="text" name="keyWord2"
+					class="form-control" style="display: inline-block; width: 50%"
+					value="<%=keyWord2%>" placeholder="작성자"> <input type="text"
+					name="keyWord3" class="form-control"
+					style="display: inline-block; width: 50%" value="<%=keyWord3%>"
+					placeholder="내용">
 				<button class="btn btn-default">종합 검색</button>
 			</form>
 
 		</div>
 
 		<!--  -->
-		<table class="table">
-			<thead>
-				<tr>
-					<th>글순번</th>
-					<th>글고유번호</th>
-					<th>제목</th>
-					<th>첨부파일</th>
-					<th>작성자</th>
-					<th>작성일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%
-				Iterator<BoardVO> it = list.iterator();
-				while (it.hasNext()) {
-					BoardVO vo = it.next();
-				%>
-				<tr>
-					<td><%=totalNum--%></td>
-					<!-- 삭제 가능 -->
-					<td><%=vo.getNum()%></td>
-					<td><a href="ViewCon?num=<%=vo.getNum()%>"><%=vo.getTitle()%></a></td>
-					<td><%=vo.getRealFileName() != null ? "<img src='img/clip.png' style='width:24px;'/>" : "" %></td>
-					<td><%=vo.getWriter()%></td>
-					<td><%=vo.getWriterDate()%></td>
-				</tr>
-				<%
-				}
-				%>
-			</tbody>
-		</table>
+		<div class="row" style="clear: both; padding: 20px 0px">
+
+			<%
+			Iterator<BoardVO> it = list.iterator();
+			while (it.hasNext()) {
+				BoardVO vo = it.next();
+			%>
+			<div style="float: left; padding: 5px;">
+				<div style="height: 170px; overflow: hidden;">
+					<a href="ViewCon?num=<%=vo.getNum()%>"><%=(vo.getRealSaveFileName() != null && !"".equals(vo.getRealSaveFileName())) ? "<img src='upload/sm_" + vo.getRealSaveFileName() + "' style='width:255.99px;  '/>" : "<img src='img/no_img.png' style='width:255.99px; ' />"%></a>
+				</div>
+				<div><a href="ViewCon?num=<%=vo.getNum()%>"><%=vo.getTitle()%></a></div>
+
+			</div>
+			<%
+			}
+			%>
+
+		</div>
 
 
 
@@ -218,7 +204,7 @@ int lastPage = totalRow / pageRow + ((totalRow % pageRow == 0) ? 0 : +1);
 				<%
 				}
 				%>
-				
+
 			</ul>
 		</nav>
 		<div class="pull-right">

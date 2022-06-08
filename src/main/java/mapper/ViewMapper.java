@@ -18,7 +18,7 @@ public class ViewMapper {
 		ResultSet rs = null;
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT *  FROM board");
+		sql.append(" SELECT *  FROM gallery");
 		sql.append(" where num = ? ");
 
 		
