@@ -17,6 +17,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import domain.BoardVO;
 import service.UpdateServiceImpl;
 import service.ViewServiceImpl;
+import util.JavaUtil;
 
 /**
  * Servlet implementation class UpdateController
@@ -40,7 +41,7 @@ public class UpdateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+
 		BoardVO vo = new BoardVO();
 		vo.setNum(Integer.parseInt(request.getParameter("num")));
 
@@ -61,8 +62,7 @@ public class UpdateController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		
+
 		// 멀티 객체 만들기
 		String saveFolder = "upload";
 
@@ -74,15 +74,10 @@ public class UpdateController extends HttpServlet {
 			targetDir.mkdir();// 디렉토리 한개
 			// targetDir.mkdirs();
 		}
-		
-	
-		
-		
-		
+
 		int maxSize = 100 * 1024 * 1024;// 100Mb
 		String encType = "UTF-8";
-		
-		
+
 		// 넘어온 값을 변수에 저장
 		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType,
 				new DefaultFileRenamePolicy());
@@ -94,16 +89,20 @@ public class UpdateController extends HttpServlet {
 		String realFileName = multi.getOriginalFileName("updatefile");
 		String realSaveFileName = multi.getFilesystemName("updatefile");
 
-		//글만 수정시 원래 파일 유지.
-		if(realFileName == null) {
+		// 글만 수정시 원래 파일 유지.
+		if (realFileName == null) {
 			realFileName = multi.getParameter("rfn");
 			realSaveFileName = multi.getParameter("rsfn");
-		}else {
-			File delFile = new File(realFolder,  multi.getParameter("rsfn"));
+		} else {
+			File delFile = new File(realFolder, multi.getParameter("rsfn"));
 			delFile.delete();
 		}
-		
-		
+
+		// 썸네일 만들기
+		JavaUtil.createThumbnail(realFolder + "/" + realSaveFileName, 256);
+
+
+
 		BoardVO vo = new BoardVO();
 		vo.setNum(Integer.parseInt(num));
 		vo.setTitle(title);
@@ -113,8 +112,6 @@ public class UpdateController extends HttpServlet {
 		vo.setRealSaveFileName(realSaveFileName);
 
 		//
-
-		
 
 		UpdateServiceImpl service = new UpdateServiceImpl();
 		service.update(vo);

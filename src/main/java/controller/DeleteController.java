@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import domain.BoardVO;
 import service.DeleteServiceImpl;
 import service.ViewServiceImpl;
+import util.JavaUtil;
 
 /**
  * Servlet implementation class DeleteController
@@ -51,9 +52,16 @@ public class DeleteController extends HttpServlet {
 		ServletContext context = request.getServletContext();
 		String realFolder = context.getRealPath(saveFolder);
 		
+		
+		//폴더 삭제
 		File delFile = new File(realFolder,  realSaveFileName);
 		if(delFile.exists()) {
 			delFile.delete();
+		}
+		
+		File delFile1 = new File(realFolder, "sm_"+ realSaveFileName);
+		if(delFile1.exists()) {
+			delFile1.delete();
 		}
 		
 		//글 삭제
