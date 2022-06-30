@@ -119,9 +119,13 @@ int lastPage = totalRow / pageRow + ((totalRow % pageRow == 0) ? 0 : +1);
 
 				</select> <input type="text" name="keyWord1" class="form-control"
 					style="display: inline-block; width: 50%" value="<%=keyWord1%>"
-					placeholder="제목"> <input type="text" name="keyWord2"
+					placeholder="제목"> 
+					
+					<input type="text" name="keyWord2"
 					class="form-control" style="display: inline-block; width: 50%"
-					value="<%=keyWord2%>" placeholder="작성자"> <input type="text"
+					value="<%=keyWord2%>" placeholder="작성자"> 
+					
+					<input type="text"
 					name="keyWord3" class="form-control"
 					style="display: inline-block; width: 50%" value="<%=keyWord3%>"
 					placeholder="내용">
